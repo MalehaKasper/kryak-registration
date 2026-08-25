@@ -47,10 +47,10 @@
     text-wrap:balance;
     margin:0;
     line-height:1.15;
-    color:var(--ink);
+    color:var(--gold-deep);
   }
   .ink-pop{
-    color:var(--ink);
+    color:var(--gold-deep);
     text-shadow:3px 3px 0 var(--red);
   }
   p{line-height:1.6; margin:0 0 14px;}
@@ -149,7 +149,7 @@
 </head>
 <body>
 <div class="wrap">
-  <a class="back" href="https://claude.ai/code/artifact/c5ec031d-6d50-4c3f-a3d9-becd7361cfcf">← до презентації «Вишкіл з фінансової грамотності Макдака»</a>
+  <a class="back" href="{{ url_for('presentation') }}">← до презентації «Вишкіл з фінансової грамотності Макдака»</a>
 
   {% if submitted %}
   <div class="banner">
