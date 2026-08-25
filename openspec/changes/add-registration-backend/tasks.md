@@ -2,7 +2,7 @@
 
 - [x] 1.1 Create Flask app skeleton (`app.py`, `templates/`, `static/`, `requirements.txt`) in `/Users/admin/Documents/project/kryak-registration`
 - [x] 1.2 Add `database.py` with SQLite connection helper and schema creation for `provid_responses` and `lecturer_responses` tables
-- [ ] 1.3 Initialize git repo, first commit
+- [x] 1.3 Initialize git repo, first commit
 
 ## 2. Provid registration form
 
@@ -34,17 +34,17 @@
 
 ## 6. PythonAnywhere deployment
 
-- [ ] 6.1 Confirm PythonAnywhere's dormancy/deactivation policy for fully free accounts (open question from design.md) before relying on this long-term
-- [ ] 6.2 Create the web app in the PythonAnywhere "Web" tab (manual Flask configuration)
-- [ ] 6.3 Push code to the account (git clone via Bash console, or Files upload)
-- [ ] 6.4 Install dependencies (`pip install --user -r requirements.txt`)
-- [ ] 6.5 Point the WSGI config file at `app.py`
-- [ ] 6.6 Set the admin Basic Auth credential as a PythonAnywhere environment variable
-- [ ] 6.7 Reload the web app; verify `/provid`, `/lecturer`, `/provid/responses`, `/lecturer/responses` all work at `MalehaKasper.pythonanywhere.com`
-- [ ] 6.8 Submit one real test entry per form on the live deployment and confirm it shows up in the admin view
+- [x] 6.1 ~~Confirm PythonAnywhere's dormancy/deactivation policy~~ — checked official docs/pricing pages, no documented policy found either way; accepted as a residual known-unknown, not blocking
+- [x] 6.2 Create the web app in the PythonAnywhere "Web" tab (manual configuration)
+- [x] 6.3 Push code to the account (public GitHub repo `MalehaKasper/kryak-registration`, cloned via Bash console)
+- [x] 6.4 Install dependencies (`pip install --user -r requirements.txt`)
+- [x] 6.5 Point the WSGI config file at `app.py`
+- [x] 6.6 Set the admin Basic Auth credential as environment variables inside the WSGI file
+- [x] 6.7 Reload the web app; verified `/provid`, `/lecturer` (200) and `/provid/responses` (401 without auth) at `malehakasper.pythonanywhere.com`
+- [x] 6.8 Submitted one real test entry per form on the live deployment; organizer confirmed both appear in the admin views
 
 ## 7. Wire up the presentation (outside this repo)
 
-- [ ] 7.1 Update the "Приєднатись до проводу" button on the presentation Artifact to point at the deployed `/provid` URL
-- [ ] 7.2 Update the "Зголоситись лектором" button on the presentation Artifact to point at the deployed `/lecturer` URL
-- [ ] 7.3 Republish the presentation Artifact and click both buttons to confirm they land correctly
+- [x] 7.1 Update the "Приєднатись до проводу" button on the presentation Artifact to point at the deployed `/provid` URL
+- [x] 7.2 Update the "Зголоситись лектором" button on the presentation Artifact to point at the deployed `/lecturer` URL
+- [x] 7.3 Republish the presentation Artifact; verified both live URLs return 200
