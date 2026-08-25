@@ -1,0 +1,158 @@
+<!doctype html>
+<html lang="uk">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Історія грошей</title>
+<link rel="icon" type="image/png" href="{{ url_for('static', filename='duck_coin_logo.png') }}">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fredoka:wght@600;700;800&family=Bitter:ital,wght@0,400;0,500;0,600;1,400&family=IBM+Plex+Mono:wght@500;600;700&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --paper:#ede0c3;
+    --paper-deep:#e1d0a6;
+    --ink:#221a12;
+    --ink-soft:#4a3c28;
+    --red:#b81f2a;
+    --red-deep:#8c1620;
+    --gold-bright:#f4c93a;
+  }
+  *{box-sizing:border-box;}
+  html{background:var(--paper);}
+  body{
+    margin:0;
+    background:var(--paper);
+    color:var(--ink);
+    font-family:'Bitter', Georgia, serif;
+    -webkit-font-smoothing:antialiased;
+  }
+  body::before{
+    content:"";
+    position:fixed; inset:0; pointer-events:none; z-index:0;
+    background-image:radial-gradient(circle, rgba(34,26,18,0.10) 1px, transparent 1.3px);
+    background-size:6px 6px;
+    mix-blend-mode:multiply;
+    opacity:0.55;
+  }
+  .wrap{position:relative; z-index:1; max-width:760px; margin:0 auto; padding:44px 20px 64px;}
+
+  h1{
+    font-family:'Fredoka','Nunito',sans-serif;
+    font-weight:800;
+    text-transform:uppercase;
+    letter-spacing:0.5px;
+    text-wrap:balance;
+    margin:0;
+    line-height:1.08;
+    font-size:clamp(28px,6vw,44px);
+    color:var(--ink);
+    text-shadow:3px 3px 0 var(--red);
+  }
+  p{line-height:1.6; margin:0 0 14px;}
+  .eyebrow{
+    font-family:'IBM Plex Mono', monospace;
+    font-weight:600; font-size:12.5px; letter-spacing:2.5px;
+    text-transform:uppercase; color:var(--red-deep);
+  }
+  a{color:var(--red-deep);}
+  .back{
+    display:inline-flex; align-items:center; gap:6px;
+    font-family:'IBM Plex Mono',monospace; font-size:12.5px; font-weight:600;
+    text-decoration:none; color:var(--ink-soft);
+    margin-bottom:26px;
+  }
+  .back:hover{color:var(--red-deep);}
+
+  .brand-logo{
+    width:64px; height:64px; border-radius:50%;
+    border:3px solid var(--ink);
+    box-shadow:2px 2px 0 var(--ink);
+  }
+  header{text-align:center; margin-bottom:30px; display:flex; flex-direction:column; align-items:center; gap:10px;}
+  header p{max-width:480px; color:var(--ink-soft); font-size:16px;}
+
+  .caption-box{
+    background:var(--paper-deep);
+    border:2.5px solid var(--ink);
+    padding:14px 18px;
+    font-size:14.5px;
+    box-shadow:3px 3px 0 var(--ink);
+    max-width:480px;
+    margin:0 auto 34px;
+  }
+  .caption-box .tag{
+    font-family:'Fredoka','Nunito',sans-serif;
+    font-weight:700; text-transform:uppercase; font-size:11.5px;
+    letter-spacing:1.5px; color:var(--red-deep);
+    display:block; margin-bottom:6px;
+  }
+
+  .pages{display:flex; flex-direction:column; gap:34px; align-items:center;}
+  figure{
+    position:relative; margin:0; max-width:480px; width:100%;
+    border:3px solid var(--ink); background:#f6ecd4;
+    box-shadow:6px 6px 0 rgba(34,26,18,0.5);
+    padding:14px;
+  }
+  .pages figure.cover{max-width:340px;}
+  figure img{display:block; width:100%; height:auto; border:2px solid var(--ink);}
+  figcaption{
+    font-family:'IBM Plex Mono',monospace; font-size:11.5px; color:var(--ink-soft);
+    margin-top:8px; letter-spacing:0.3px; text-align:right;
+  }
+
+  footer{text-align:center; margin-top:40px;}
+  footer .eyebrow{display:block; margin-bottom:8px;}
+</style>
+</head>
+<body>
+<div class="wrap">
+  <a class="back" href="{{ url_for('presentation') }}">← до презентації «Вишкіл з фінансової грамотності Макдака»</a>
+
+  <header>
+    <img class="brand-logo" src="{{ url_for('static', filename='duck_coin_logo.png') }}" alt="Крякобанк">
+    <span class="eyebrow">Качині Історії · гутірка №1</span>
+    <h1>Історія грошей</h1>
+    <p>Чорновий зразок коміксу для гутірки «Про історію створення сучасних грошей» — обкладинка й 5 сторінок по порядку, вирізані з друкованого макета.</p>
+  </header>
+
+  <div class="caption-box">
+    <span class="tag">Це чернетка, не фінальний продукт</span>
+    Перший начерк, доказ того, що формат «гутірка-комікс» працює й може виглядати саме так. Серію на решту тем ще ніхто не малював — потрібен художник(-ця), щоб довести цей зразок до фінальної якості й продовжити.
+  </div>
+
+  <div class="pages">
+    <figure class="cover">
+      <img src="{{ url_for('static', filename='img/comic/cover.jpg') }}" alt="Обкладинка коміксу «Історія грошей»">
+      <figcaption>ОБКЛАДИНКА</figcaption>
+    </figure>
+    <figure>
+      <img src="{{ url_for('static', filename='img/comic/page1.jpg') }}" alt="Сторінка коміксу, СТОРІНКА 1 / 5 · кадри 1—4">
+      <figcaption>СТОРІНКА 1 / 5 · кадри 1—4</figcaption>
+    </figure>
+    <figure>
+      <img src="{{ url_for('static', filename='img/comic/page2.jpg') }}" alt="Сторінка коміксу, СТОРІНКА 2 / 5 · кадри 5—8">
+      <figcaption>СТОРІНКА 2 / 5 · кадри 5—8</figcaption>
+    </figure>
+    <figure>
+      <img src="{{ url_for('static', filename='img/comic/page3.jpg') }}" alt="Сторінка коміксу, СТОРІНКА 3 / 5 · кадри 9—12">
+      <figcaption>СТОРІНКА 3 / 5 · кадри 9—12</figcaption>
+    </figure>
+    <figure>
+      <img src="{{ url_for('static', filename='img/comic/page4.jpg') }}" alt="Сторінка коміксу, СТОРІНКА 4 / 5 · кадри 13—15">
+      <figcaption>СТОРІНКА 4 / 5 · кадри 13—15</figcaption>
+    </figure>
+    <figure>
+      <img src="{{ url_for('static', filename='img/comic/page5.jpg') }}" alt="Сторінка коміксу, СТОРІНКА 5 / 5 · кадри 16—18">
+      <figcaption>СТОРІНКА 5 / 5 · кадри 16—18</figcaption>
+    </figure>
+  </div>
+
+  <footer>
+    <span class="eyebrow">Кінець зразка</span>
+    <a href="{{ url_for('presentation') }}">← повернутись до презентації</a>
+  </footer>
+</div>
+</body>
+</html>

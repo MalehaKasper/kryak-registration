@@ -69,6 +69,16 @@ def _validate(name, telegram, phone):
     return None
 
 
+@app.route("/")
+def presentation():
+    return render_template("presentation.html")
+
+
+@app.route("/comic")
+def comic_viewer():
+    return render_template("comic.html")
+
+
 @app.route("/provid", methods=["GET"])
 def provid_form():
     return render_template(
