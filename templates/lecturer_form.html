@@ -1,0 +1,53 @@
+{% extends "base.html" %}
+{% block title %}Зголошення лектора{% endblock %}
+{% block eyebrow %}Качині Історії · лектори{% endblock %}
+{% block heading %}Зголошення лектора{% endblock %}
+{% block subtitle %}Заповніть форму — зголошення одразу зберігається тут. Список бачить лише організатор.{% endblock %}
+{% block thanks_text %}Зголошення збережено. Дякуємо!{% endblock %}
+
+{% block content %}
+<form method="POST" action="{{ url_for('lecturer_submit') }}">
+  <div class="field">
+    <label for="name">Ім'я та прізвище</label>
+    <input type="text" id="name" name="name" required autocomplete="name" value="{{ values.get('name', '') }}">
+  </div>
+
+  <div class="field">
+    <label for="telegram">Telegram</label>
+    <span class="hint">Нік, напр. @username</span>
+    <input type="text" id="telegram" name="telegram" placeholder="@username" value="{{ values.get('telegram', '') }}">
+  </div>
+
+  <div class="field">
+    <label for="phone">Номер телефону</label>
+    <input type="text" id="phone" name="phone" placeholder="+380..." autocomplete="tel" value="{{ values.get('phone', '') }}">
+  </div>
+
+  <fieldset>
+    <legend>Яку гутірку хочеш(еш) вести</legend>
+    <div class="task-grid">
+      {% for t in talks %}
+      <label class="task-row">
+        <input type="checkbox" name="task" value="{{ t }}" {% if t in values.get('tasks', []) %}checked{% endif %}>
+        {{ t }}
+      </label>
+      {% endfor %}
+    </div>
+  </fieldset>
+
+  <div class="field">
+    <label for="idea">Своя тема</label>
+    <span class="hint">Якщо хочеш(еш) запропонувати тему поза списком — необов'язково</span>
+    <textarea id="idea" name="idea">{{ values.get('idea', '') }}</textarea>
+  </div>
+
+  <div class="field">
+    <label for="about">Досвід із темою</label>
+    <span class="hint">Фах, досвід, чому саме ця тема — необов'язково</span>
+    <textarea id="about" name="about">{{ values.get('about', '') }}</textarea>
+  </div>
+
+  <button type="submit" class="submit-btn">Надіслати зголошення</button>
+  <p class="note">Зголошення бачить лише організатор заходу.</p>
+</form>
+{% endblock %}

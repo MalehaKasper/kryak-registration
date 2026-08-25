@@ -1,0 +1,168 @@
+<!doctype html>
+<html lang="uk">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>{% block title %}{% endblock %}</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fredoka:wght@500;600;700;800&family=Bitter:ital,wght@0,400;0,500;0,600;0,700;1,400;1,500&family=IBM+Plex+Mono:wght@500;600;700&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --paper:#ede0c3;
+    --paper-deep:#e1d0a6;
+    --ink:#221a12;
+    --ink-soft:#4a3c28;
+    --red:#b81f2a;
+    --red-deep:#8c1620;
+    --gold:#e8a71c;
+    --gold-bright:#f4c93a;
+    --gold-deep:#8f6110;
+  }
+  *{box-sizing:border-box;}
+  html{background:var(--paper);}
+  body{
+    margin:0;
+    background:var(--paper);
+    color:var(--ink);
+    font-family:'Bitter', Georgia, 'Times New Roman', serif;
+    -webkit-font-smoothing:antialiased;
+  }
+  body::before{
+    content:"";
+    position:fixed; inset:0; pointer-events:none; z-index:0;
+    background-image:radial-gradient(circle, rgba(34,26,18,0.10) 1px, transparent 1.3px);
+    background-size:6px 6px;
+    mix-blend-mode:multiply;
+    opacity:0.55;
+  }
+  .wrap{position:relative; z-index:1; max-width:640px; margin:0 auto; padding:48px 20px 60px;}
+
+  h1,h2,.shout{
+    font-family:'Fredoka','Nunito',sans-serif;
+    font-weight:700;
+    text-transform:uppercase;
+    letter-spacing:0.5px;
+    text-wrap:balance;
+    margin:0;
+    line-height:1.15;
+    color:var(--ink);
+  }
+  .ink-pop{
+    color:var(--ink);
+    text-shadow:3px 3px 0 var(--red);
+  }
+  p{line-height:1.6; margin:0 0 14px;}
+  .eyebrow{
+    font-family:'IBM Plex Mono', monospace;
+    font-weight:600; font-size:12.5px; letter-spacing:2.5px;
+    text-transform:uppercase; color:var(--red-deep);
+  }
+  a{color:var(--red-deep);}
+
+  .back{
+    display:inline-flex; align-items:center; gap:6px;
+    font-family:'IBM Plex Mono',monospace; font-size:12.5px; font-weight:600;
+    text-decoration:none; color:var(--ink-soft);
+    margin-bottom:26px;
+  }
+  .back:hover{color:var(--red-deep);}
+
+  header{text-align:center; margin-bottom:34px; display:flex; flex-direction:column; align-items:center; gap:10px;}
+  header h1{font-size:clamp(26px,6vw,42px); padding:4px 2px;}
+  header p{max-width:460px; color:var(--ink-soft); font-size:16px;}
+
+  .banner{
+    border:2.5px solid var(--ink);
+    background:#e4f2df;
+    box-shadow:3px 3px 0 var(--ink);
+    padding:14px 18px;
+    font-size:14.5px;
+    margin-bottom:22px;
+  }
+  .banner.error{background:#fdeaea;}
+  .banner strong{
+    display:block; font-family:'Fredoka','Nunito',sans-serif;
+    text-transform:uppercase; font-size:13px; color:var(--red-deep); margin-bottom:6px;
+  }
+
+  form{
+    background:var(--paper-deep);
+    border:3px solid var(--ink);
+    box-shadow:6px 6px 0 var(--ink);
+    padding:28px 24px;
+    display:flex; flex-direction:column; gap:22px;
+  }
+
+  .field{display:flex; flex-direction:column; gap:8px;}
+  .field label{
+    font-family:'Fredoka','Nunito',sans-serif; font-weight:700;
+    font-size:14.5px; text-transform:uppercase; letter-spacing:0.3px;
+  }
+  .field .hint{font-family:'Bitter',serif; font-weight:400; text-transform:none; letter-spacing:0; font-size:13px; color:var(--ink-soft);}
+  input[type="text"], textarea{
+    font-family:'Bitter',serif; font-size:15.5px;
+    background:var(--paper);
+    border:2px solid var(--ink);
+    border-radius:4px;
+    padding:11px 13px;
+    color:var(--ink);
+  }
+  input[type="text"]:focus, textarea:focus{outline:3px solid var(--gold-bright); outline-offset:1px;}
+  textarea{resize:vertical; min-height:80px;}
+
+  fieldset{border:2px solid var(--ink); border-radius:4px; padding:14px 14px 10px; background:var(--paper);}
+  fieldset legend{
+    font-family:'Fredoka','Nunito',sans-serif; font-weight:700;
+    font-size:14.5px; text-transform:uppercase; letter-spacing:0.3px;
+    padding:0 6px;
+  }
+  .task-grid{display:grid; grid-template-columns:1fr 1fr; gap:8px 14px;}
+  @media(max-width:480px){ .task-grid{grid-template-columns:1fr;} }
+  .task-row{display:flex; align-items:flex-start; gap:8px; font-size:14px; line-height:1.35;}
+  .task-row input{margin-top:3px; accent-color:var(--red);}
+
+  .submit-btn{
+    font-family:'Fredoka','Nunito',sans-serif; font-weight:700;
+    text-transform:uppercase; letter-spacing:0.5px; font-size:17px;
+    color:var(--paper); background:var(--red);
+    border:3px solid var(--ink);
+    padding:15px 20px;
+    box-shadow:4px 4px 0 var(--ink);
+    cursor:pointer;
+  }
+  .submit-btn:hover{filter:brightness(1.05);}
+  .submit-btn:active{transform:translate(2px,2px); box-shadow:2px 2px 0 var(--ink);}
+
+  .note{
+    font-family:'IBM Plex Mono',monospace; font-size:12px;
+    color:var(--ink-soft); text-align:center;
+  }
+</style>
+</head>
+<body>
+<div class="wrap">
+  <a class="back" href="https://claude.ai/code/artifact/c5ec031d-6d50-4c3f-a3d9-becd7361cfcf">← до презентації «Вишкіл з фінансової грамотності Макдака»</a>
+
+  {% if submitted %}
+  <div class="banner">
+    <strong>Дякуємо!</strong>
+    {% block thanks_text %}Вашу відповідь збережено.{% endblock %}
+  </div>
+  {% elif error %}
+  <div class="banner error">
+    <strong>Перевірте форму</strong>
+    {{ error }}
+  </div>
+  {% endif %}
+
+  <header>
+    <span class="eyebrow">{% block eyebrow %}{% endblock %}</span>
+    <h1 class="ink-pop">{% block heading %}{% endblock %}</h1>
+    <p>{% block subtitle %}{% endblock %}</p>
+  </header>
+
+  {% block content %}{% endblock %}
+</div>
+</body>
+</html>

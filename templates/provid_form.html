@@ -1,0 +1,53 @@
+{% extends "base.html" %}
+{% block title %}Реєстрація в провід{% endblock %}
+{% block eyebrow %}Качині Історії · провід{% endblock %}
+{% block heading %}Реєстрація в провід{% endblock %}
+{% block subtitle %}Заповніть форму — заявка одразу зберігається тут. Список заявок бачить лише організатор.{% endblock %}
+{% block thanks_text %}Заявку збережено. Дякуємо за бажання приєднатись!{% endblock %}
+
+{% block content %}
+<form method="POST" action="{{ url_for('provid_submit') }}">
+  <div class="field">
+    <label for="name">Ім'я та прізвище</label>
+    <input type="text" id="name" name="name" required autocomplete="name" value="{{ values.get('name', '') }}">
+  </div>
+
+  <div class="field">
+    <label for="telegram">Telegram</label>
+    <span class="hint">Нік, напр. @username</span>
+    <input type="text" id="telegram" name="telegram" placeholder="@username" value="{{ values.get('telegram', '') }}">
+  </div>
+
+  <div class="field">
+    <label for="phone">Номер телефону</label>
+    <input type="text" id="phone" name="phone" placeholder="+380..." autocomplete="tel" value="{{ values.get('phone', '') }}">
+  </div>
+
+  <fieldset>
+    <legend>Яке завдання хочеш(еш) узяти</legend>
+    <div class="task-grid">
+      {% for t in tasks %}
+      <label class="task-row">
+        <input type="checkbox" name="task" value="{{ t }}" {% if t in values.get('tasks', []) %}checked{% endif %}>
+        {{ t }}
+      </label>
+      {% endfor %}
+    </div>
+  </fieldset>
+
+  <div class="field">
+    <label for="idea">Своя ідея чи пропозиція</label>
+    <span class="hint">Необов'язково — список завдань не вичерпний</span>
+    <textarea id="idea" name="idea">{{ values.get('idea', '') }}</textarea>
+  </div>
+
+  <div class="field">
+    <label for="about">Коротко про себе</label>
+    <span class="hint">Досвід, чому цікаво — необов'язково</span>
+    <textarea id="about" name="about">{{ values.get('about', '') }}</textarea>
+  </div>
+
+  <button type="submit" class="submit-btn">Надіслати заявку</button>
+  <p class="note">Заявку бачить лише організатор заходу.</p>
+</form>
+{% endblock %}
